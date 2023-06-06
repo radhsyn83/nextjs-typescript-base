@@ -1,14 +1,23 @@
-import { useAppSelector } from '@/data/hook';
-import { authSelector } from '@/data/slicer/authSlicer';
+import { useAppDispatch, useAppSelector } from '@/data/hook';
+import { User } from '@/data/models/auth.models';
+import { authSelector, profile } from '@/data/slicer/authSlicer';
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const dispatch = useAppDispatch();
   const auth = useAppSelector(authSelector);
+  const [user, setUser] = useState<User>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(auth);
-  }, [auth.user]);
+    setUser(auth.user);
+    setLoading(auth.loading);
+  }, [auth]);
+
+  function getUser() {
+    dispatch(profile());
+  }
 
   return (
     <>
@@ -21,7 +30,11 @@ export default function Home() {
       <main>
         <div className="">
           <div>
-            <h1>HomePage</h1>{' '}
+            <h1>HomePage</h1> <br />
+            <button onClick={getUser}>Check User with Token</button>
+            <br />
+            <br /> {loading && <div>Loading...</div>}
+            {user && !loading && <span>{JSON.stringify(user)}</span>}
           </div>
         </div>
       </main>
