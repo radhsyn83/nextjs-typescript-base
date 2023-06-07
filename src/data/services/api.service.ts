@@ -40,4 +40,33 @@ export class ApiService implements BaseApiService {
     });
     return await res.json();
   }
+
+  async PUT(url: string, body: any): Promise<any> {
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: this.HEADER(),
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  }
+
+  async DELETE(url: string, query?: object, body?: any): Promise<any> {
+    var objString = '';
+    //convert string to url parameter
+    if (query) {
+      objString =
+        '?' +
+        Object.keys(query)
+          .map((key) => {
+            return `${key}=${encodeURIComponent(query[key as keyof object])}`;
+          })
+          .join('&');
+    }
+    const res = await fetch(url + objString, {
+      method: 'DELETE',
+      headers: this.HEADER(),
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  }
 }

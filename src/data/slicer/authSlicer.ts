@@ -19,7 +19,7 @@ export const login = createAsyncThunk('login', async (body: any) => {
 
 export const profile = createAsyncThunk('profile', async () => {
   const res = await apiService
-    .GET('https://dummyjson.com/users/1')
+    .GET('https://dummyjson.com/users/1', { name: 'fathur', date: 19 })
     .catch((e) => console.log(e, 'error'));
   return res;
 });
