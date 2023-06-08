@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './slicer/authSlicer';
+import roomReducer from './slicer/roomSlicer';
+import userReducer from './slicer/userSlicer';
 
 export const store = configureStore({
   reducer: {
-    authReducer,
+    userReducer,
+    roomReducer,
   },
 });
 export type AppDispatch = typeof store.dispatch;

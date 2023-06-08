@@ -29,6 +29,7 @@
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "js-cookie": "^3.0.5",
+    "mqtt-react-hooks": "^3.0.0-alpha.2",
     "next": "13.4.4",
     "next-redux-wrapper": "^8.1.0",
     "react": "18.2.0",
@@ -42,6 +43,7 @@
     "@storybook/cli": "^7.0.18",
     "@types/js-cookie": "^3.0.3",
     "cross-env": "^7.0.3",
+    "mqtt": "^4.3.7",
     "prettier": "^2.8.8"
   },
   "resolutions": {

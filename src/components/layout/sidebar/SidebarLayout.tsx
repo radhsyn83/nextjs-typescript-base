@@ -2,8 +2,8 @@ import styles from './SidebarLayout.module.scss';
 
 export interface ISidebarLayout {}
 
-const ProductCard: React.FC<ISidebarLayout> = () => {
+const SidebarLayout: React.FC<ISidebarLayout> = () => {
   return <div className={styles.container}>ss</div>;
 };
 
-export default ProductCard;
+export default SidebarLayout;
