@@ -5,7 +5,7 @@ export interface IChat extends React.ComponentPropsWithoutRef<'div'> {}
 
 const ChatController: React.FC<IChat> = ({ children }) => {
   const { client } = useMqttState();
-  const { message } = useSubscription(['testsub', 'testsub2']);
+  const { message } = useSubscription(['testsub']);
   const { connectionStatus } = useMqttState();
 
   useEffect(() => {
@@ -17,10 +17,6 @@ const ChatController: React.FC<IChat> = ({ children }) => {
       console.log(message);
     }
   }, [message]);
-
-  client?.on('message', (topic: string, rawPayload: any, packet: any) => {
-    console.log(rawPayload, 's');
-  });
 
   return <>{children}</>;
 };

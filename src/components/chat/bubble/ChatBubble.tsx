@@ -38,8 +38,7 @@ const ChatBubble: React.FC<IChatBubble> = ({
             isShowTail && (isMe ? styles.tail_mine : styles.tail_opponent)
           }`}
         >
-          {chat.message} {chat.date_add.substring(0, 10)}{' '}
-          {isShowTail ? 'show' : ''}
+          {chat.message}
         </div>
       </div>
     </div>

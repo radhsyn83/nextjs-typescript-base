@@ -43,6 +43,7 @@ const Home: NextPageWithLayout = () => {
               //system
               const isSystem = c.type == 'system';
               if (isSystem) {
+                console.log(c.user_id);
                 c.user_id = 'system';
               }
               //date
