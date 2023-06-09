@@ -1,7 +1,7 @@
 // @ts-check
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import * as NextImage from 'next/image';
-import '../src/styles/globals.css';
+import '../src/styles/globals.scss';
 
 const BREAKPOINTS_INT = {
   xs: 375,

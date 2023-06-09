@@ -1,0 +1,30 @@
+@import '../../../../styles/colors';
+
+.container {
+  color: $text-scaffold;
+  padding: 15px 20px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #adadad16;
+
+  .content {
+    display: flex;
+    flex-grow: 1;
+    margin: 0px 20px;
+    flex-direction: column;
+
+    .name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .profile_lable {
+      font-size: 13px;
+      color: $text-caption;
+      flex-grow: 1;
+    }
+  }
+}

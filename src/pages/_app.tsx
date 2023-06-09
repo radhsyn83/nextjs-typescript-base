@@ -1,6 +1,7 @@
 import { store } from '@/data/store';
 import Chat from '@/lib/chat';
-import '@/styles/globals.css';
+
+import '@/styles/globals.scss';
 import { IClientOptions } from 'mqtt';
 import { Connector } from 'mqtt-react-hooks';
 import { AppProps } from 'next/app';
@@ -15,6 +16,7 @@ const options: IClientOptions = {
   username: process.env.NEXT_PUBLIC_MQTT_USERNAME,
   password: process.env.NEXT_PUBLIC_MQTT_PASSWORD,
   keepalive: 10,
+  protocol: 'wss',
   clientId: 'MyClient',
 };
 const brokerUrl = process.env.NEXT_PUBLIC_MQTT_URI ?? '';

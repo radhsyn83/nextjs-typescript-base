@@ -1,3 +1,4 @@
+import ChatBubble from '@/components/chat/bubble/ChatBubble';
 import PrimaryLayout from '@/components/layout/primary/PrimaryLayout';
 import RoomLayout from '@/components/layout/room/RoomLayout';
 import RoomHeader from '@/components/layout/room/header/RoomHeader';
@@ -27,20 +28,65 @@ const Home: NextPageWithLayout = () => {
 
   return (
     <div className={styles.container}>
-      <br /> {loading && <div>Loading...</div>}
-      {room.selectedRoom && !loading && (
-        <div>
-          <RoomHeader room={room.selectedRoom} />
-          <br />
-          <p>Chat List: </p>
-          {room.selectedRoom.chats?.map((c, i) => (
-            <div key={i}>
-              <p>
-                {c.user_id == user.profile?.id ? 'me' : c.name}: {c.message}
-              </p>
-            </div>
-          ))}
+      {loading && (
+        <div className={styles.loading}>
+          <div className="spinner" />
         </div>
+      )}
+      {room.selectedRoom && (
+        <>
+          <RoomHeader room={room.selectedRoom} />
+          <div className={styles.conversation}>
+            {room.selectedRoom.chats?.map((c, i) => {
+              const chats = room?.selectedRoom?.chats ?? [];
+              const chatLength = chats.length ?? 0;
+              //system
+              const isSystem = c.type == 'system';
+              if (isSystem) {
+                c.user_id = 'system';
+              }
+              //date
+              const date = c.date_add.substring(0, 10);
+              //check date same with before
+              const isDateSameWithBefore =
+                i == chatLength - 1 ||
+                (i > 0 &&
+                  i != chatLength - 1 &&
+                  date != chats[i + 1].date_add.toString().substring(0, 10));
+              //check show date
+              const isShowDate =
+                i == 0 ||
+                (i > 0 &&
+                  date != chats[i - 1].date_add.toString().substring(0, 10));
+              //check show sender name
+              const isShowSender =
+                (i != chatLength - 1 && c.user_id != chats[i + 1].user_id) ||
+                isShowDate;
+              //check show bubble tail
+              const isShowTail =
+                i == chatLength - 1 ||
+                (i != chatLength - 1 && c.type != chats[i + 1].type) ||
+                (i != chatLength - 1 && c.user_id != chats[i + 1].user_id) ||
+                isDateSameWithBefore;
+              //check is chat send by me
+              const isMe = c.user_id!.toString() == user.profile?.id;
+
+              return (
+                <>
+                  <ChatBubble
+                    isMe={isMe}
+                    isShowDate={isShowDate}
+                    isShowSender={isShowSender}
+                    isShowTail={isShowTail}
+                    isSystem={isSystem}
+                    key={i}
+                    chat={c}
+                  />
+                </>
+              );
+            })}
+          </div>
+        </>
       )}
     </div>
   );

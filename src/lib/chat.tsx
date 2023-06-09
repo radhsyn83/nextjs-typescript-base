@@ -22,7 +22,7 @@ const ChatController: React.FC<IChat> = ({ children }) => {
     console.log(rawPayload, 's');
   });
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 export default ChatController;
